@@ -1,0 +1,23 @@
+[
+  {
+    "session_id": "s-1001",
+    "visitor_hash": "anon-0042",
+    "locker_id": 101,
+    "check_in": "2026-07-03T17:45:00",
+    "expected_check_out": "2026-07-03T19:10:00"
+  },
+  {
+    "session_id": "s-1002",
+    "visitor_hash": "anon-0188",
+    "locker_id": 103,
+    "check_in": "2026-07-03T18:02:00",
+    "expected_check_out": "2026-07-03T19:40:00"
+  },
+  {
+    "session_id": "s-1003",
+    "visitor_hash": "anon-0215",
+    "locker_id": 210,
+    "check_in": "2026-07-03T18:15:00",
+    "expected_check_out": "2026-07-03T20:00:00"
+  }
+]
