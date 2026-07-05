@@ -1,51 +1,41 @@
 # Gym Locker Optimizer
 
-Короткая русская версия.
+Позвольте представить Gym Locker Optimizer — privacy-friendly алгоритм распределения шкафчиков для фитнес-клубов, тренажерных залов, бассейнов и раздевалок. Проект сделал Олег Ремизов, сайт: [remizov.com](https://remizov.com).
 
-Gym Locker Optimizer — privacy-friendly алгоритм распределения шкафчиков для фитнес-клубов, тренажерных залов, бассейнов и раздевалок. Проект сделал Oleg Remizov, сайт: [remizov.com](https://remizov.com).
+Моя идея простая, появилась так как лично сталкивался в двух фитнес-клубах в Москве. Когда посетитель приходит в клуб, система выбирает свободный шкафчик не случайно, а с учетом физической карты раздевалки, текущей занятости и вероятного времени ухода других посетителей. Цель — снизить ситуации, когда людям приходится переодеваться рядом друг с другом.
 
-Идея простая: когда посетитель приходит в клуб, система выбирает свободный шкафчик не случайно, а с учетом физической карты раздевалки, текущей занятости и вероятного времени ухода других посетителей. Цель — снизить ситуации, когда людям приходится переодеваться рядом друг с другом.
-
-Алгоритм использует только технические события посещения: check-in, check-out, дату/день недели, номер шкафчика и анонимный идентификатор при необходимости. Имена, телефоны, фото, документы и другие персональные данные не нужны.
+Алгоритм у меня использует только технические события посещения: check-in, check-out, дату/день недели, номер шкафчика и анонимный идентификатор при необходимости. Имена, телефоны, фото, документы и другие персональные данные не нужны.
 
 Для каждого свободного шкафчика считается оценка:
-
 - насколько далеко он находится от занятых шкафчиков
 - есть ли риск пересечения во время переодевания после входа
 - есть ли риск пересечения перед ожидаемым уходом
 - как шкафчик расположен физически, а не только какой у него номер
 - подходит ли он под предпочтения, например верхний/нижний ярус
-
 В проекте есть Python-ядро, CLI, симулятор `random` vs `smart`, тесты и TypeScript-версия для прототипов интерфейса или интеграции в веб-сервис.
 
 ENGLISH TEXT BELOW
 
 ---
 
-Privacy-friendly locker assignment for gyms, fitness clubs, swimming pools, and changing rooms.
-
+My privacy-friendly locker assignment for gyms, fitness clubs, swimming pools, and changing rooms.
 The project ranks available lockers by physical distance and predicted changing-room overlap. It is meant for clubs where members receive a locker key at check-in and the usual random assignment often puts two people next to each other while they are changing.
 
 ## Why this exists
-
 Many gyms already know:
-
 - when a member checks in
 - when the same anonymous member checks out
 - which lockers are currently occupied
 - the physical locker layout
 
 That is enough to make better locker choices without storing names, phone numbers, face data, or other personal details.
-
 The optimizer estimates when current visitors are likely to return to their locker, then picks a free locker that is far away from likely activity. It also returns backup options, so a front desk system can regenerate or let staff choose another suitable key.
 
 ## Core idea
 
 Each visit has two high-friction windows:
-
 - arrival window: about 10 minutes after check-in
 - departure window: about 15 minutes before predicted check-out
-
 For each available locker, the algorithm scores:
 
 - distance from occupied lockers
